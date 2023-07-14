@@ -27,6 +27,18 @@ const pAequorFactory = (num, arr) => {
             const baseToSelectFrom = dnaBases.filter(e => e !== baseValue);
             // mutate original base to a different one randomly
             this.dna[indexBaseToMutate] = baseToSelectFrom[Math.floor(Math.random() * 3)];
+        },
+
+        compareDNA(object){
+            let similar = 0;
+            let percentages;
+            for(let i = 0; i < 15; i++){
+                if(this.dna[i] === object.dna[i]){
+                    similar++;
+                }
+            }
+            percentages = (similar/15) * 100;
+            console.log(`specimen #${this.specimenNum} and specimen #${object.specimenNum} have ${percentages}% DNA in common`);
         }
     }
 }
@@ -35,3 +47,7 @@ pAequor = pAequorFactory(1, mockUpStrand());
 console.log(pAequor);
 pAequor.mutate();
 console.log(pAequor); // one of the 16 base should be different than previously
+
+pAequor2 = pAequorFactory(2, mockUpStrand());
+console.log(pAequor2);
+pAequor.compareDNA(pAequor2);
