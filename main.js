@@ -39,6 +39,13 @@ const pAequorFactory = (num, arr) => {
             }
             percentages = (similar/15) * 100;
             console.log(`specimen #${this.specimenNum} and specimen #${object.specimenNum} have ${percentages}% DNA in common`);
+        },
+
+        willLikelySurvive(){
+            // true if object dna contains at least 60% 'C' or 'G' bases
+            const arr = this.dna.filter(e => e === 'C' || e === 'G');
+            let percentages = (arr.length/15) * 100;
+            return percentages >= 60 ? true : false;
         }
     }
 }
@@ -51,3 +58,5 @@ console.log(pAequor); // one of the 16 base should be different than previously
 pAequor2 = pAequorFactory(2, mockUpStrand());
 console.log(pAequor2);
 pAequor.compareDNA(pAequor2);
+
+console.log(pAequor2.willLikelySurvive());
